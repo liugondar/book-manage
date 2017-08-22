@@ -1,11 +1,14 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {selectBook} from '../actions';
 
 class BookList extends Component{
     renderList(){
         return this.props.books.map((book,index)=>{
             return(
-                <li className="list-group-item" key={index}>
+                <li className="list-group-item" key={index}
+                    onClick={()=>this.props.selectBook(book)}
+                >
                     {book.title}
                 </li>
             )
@@ -29,4 +32,4 @@ const mapStateToProps=state=>{
     }
 }
 
-export default connect(mapStateToProps,null)(BookList);
+export default connect(mapStateToProps,{selectBook})(BookList);
